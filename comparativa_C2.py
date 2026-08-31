@@ -208,7 +208,7 @@ for i,e in enumerate(ciclos_C2):
     if '238kHz' in e and '100dA' in e:
         _,_,_, H_C2,M_C2,_ = lector_ciclos(ciclos_C2[i])
         print('1',os.path.basename(e))
-        axs[0,0].plot(H_C2/1000,M_C2,'-',label=f'{SAR_C2[i]:.3uS}')
+        axs[0,0].plot(H_C2/1000,M_C2,'-',label=f'{SAR_C2[i]:.2uS}')
 
     elif '238kHz' in e and '150dA' in e:
         _,_,_, H_C2,M_C2,_ = lector_ciclos(ciclos_C2[i])
@@ -218,7 +218,7 @@ for i,e in enumerate(ciclos_C2):
     elif '300kHz' in e and '100dA' in e:
         _,_,_, H_C2,M_C2,_ = lector_ciclos(ciclos_C2[i])
         print('1',os.path.basename(e))
-        axs[0,1].plot(H_C2/1000,M_C2,'-',label=f'{SAR_C2[i]:.3uS}')
+        axs[0,1].plot(H_C2/1000,M_C2,'-',label=f'{SAR_C2[i]:.2uS}')
 
     elif '300kHz' in e and '150dA' in e:
         _,_,_, H_C2,M_C2,_ = lector_ciclos(ciclos_C2[i])
@@ -233,7 +233,7 @@ axs[1,1].set_xlabel('H (kA/m)')
 for a in axs.ravel():
     a.grid()
     a.legend(loc='upper left',frameon=True,shadow=True,title='ESAR (W/g)')
-plt.suptitle(f'{nombre_C2} ciclos promedio \n238/300 kHz & 38/57 kA/m\nC = {conc_C2:.1f} g/L')
+plt.suptitle(f'{nombre_C2} ciclos promedio \nf = 238/300 kHz & H$_0$ = 38/57 kA/m\nC = {conc_C2:.1f} g/L')
 
 #%%
 print('Resultados C2', '='*80,'\n')
@@ -245,10 +245,9 @@ rates_C2 = []
 
 fig01, axs =plt.subplots(2,2,figsize=(13,8),constrained_layout=True,sharey=True,sharex=True)
 axs[0,0].set_title('238 kHz   38 kA/m',loc='left')
-axs[0,1].set_title('300 kHz   38 kA/m',loc='left')
 axs[1,0].set_title('238 kHz   57 kA/m',loc='left')
+axs[0,1].set_title('300 kHz   38 kA/m',loc='left')
 axs[1,1].set_title('300 kHz   57 kA/m',loc='left')
-
 
 for i,r in enumerate(res_C2):
     dt = r.time[-1]-r.time[0]
@@ -259,14 +258,11 @@ for i,r in enumerate(res_C2):
     if ('238kHz' in r.directorio) and ('38kAm' in r.directorio):
         axs[0,0].plot(r.time,r.temperatura,'.-',label=f'{rate:.1f}')
     elif '238kHz' in r.directorio and '57kAm' in r.directorio:
-        axs[0,1].plot(r.time,r.temperatura,'.-',label=f'{rate:.1f}')
-
-    elif ('300kHz' in r.directorio) and ('38kAm' in r.directorio):
         axs[1,0].plot(r.time,r.temperatura,'.-',label=f'{rate:.1f}')
+    elif ('300kHz' in r.directorio) and ('38kAm' in r.directorio):
+        axs[0,1].plot(r.time,r.temperatura,'.-',label=f'{rate:.1f}')
     elif '300kHz' in r.directorio and '57kAm' in r.directorio:
         axs[1,1].plot(r.time,r.temperatura,'.-',label=f'{rate:.1f}')
-
-
 
 axs[0,0].set_ylabel('T (°C)')
 axs[1,0].set_ylabel('T (°C)')
@@ -276,7 +272,7 @@ axs[1,1].set_xlabel('t (s)')
 for a in axs.ravel():
     a.grid()
     a.legend(loc='best',frameon=True,shadow=True,title='Warming Rate (°C/s)',ncol=2)
-plt.suptitle(f'Templogs {nombre_C2} \n238/300 kHz & 38/57 kA/m\nC = {conc_C2:.1f} g/L')
+plt.suptitle(f'Templogs {nombre_C2}\nf = 238/300 kHz & H$_0$ = 38/57 kA/m\nC = {conc_C2:.1f} g/L')
 
 ################################################################################################################################
 
@@ -340,8 +336,6 @@ for a in axs.ravel():
 
 plt.suptitle('tau C2\n238/300 kHz & 38/57 kA/m')
 plt.show()
-
-#%% 
 #%% Hc C2
 fig5, axs = plt.subplots(2,1,figsize=(8,6),constrained_layout=True,sharex=True)
 

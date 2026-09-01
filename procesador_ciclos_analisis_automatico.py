@@ -57,16 +57,17 @@ from datetime import datetime,timedelta
 from numpy.core.numeric import indices
 from funciones_procesado import medida_cruda, medida_cruda_autom,ajusta_seno, sinusoide,resta_inter,filtrando_ruido,recorte,promediado_ciclos,fourier_señales_5,lector_templog_2,lector_templog,susceptibilidad_M_0
 
-#%% Configuracion de Script
+#%% Configuracion de Script}
+
 todos=1
 un_solo_fondo=1
 resto_fondo=1
 templog = 1
 N_espiras_bob_captora=1
-nombre='*C2'
+nombre='*C1'
 Analisis_de_Fourier = 1 # sobre las señales, imprime espectro de señal muestra
 N_armonicos_impares = 18
-concentracion =(18.6)*1e3 #[concentracion]= g/m^3 (1 g/l == 1e3 g/m^3) (Default = 10000 g/m^3)
+concentracion =(20.5)*1e3 #[concentracion]= g/m^3 (1 g/l == 1e3 g/m^3) (Default = 10000 g/m^3)
 capsula_glucosa=0   # capsula para solventes organicos
 detector_ciclos_descartables=True #en funcion a Mag max para evitar guardar/promediar con ciclos in/out
 Ciclo_promedio=1
